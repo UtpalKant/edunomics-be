@@ -4,7 +4,8 @@
   "description": "node-api to calculate shm",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server"
+    "nodemon": "nodemon server",
+    "start": "node server"
   },
   "author": "Utpal K Mehta",
   "license": "ISC",

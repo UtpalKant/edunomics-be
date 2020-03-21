@@ -1,6 +1,9 @@
 const { droppingTime, bounceBackHeight } = require('../utility.module/utility.service');
 const { getData, saveData } = require('../utility.module/file.service');
 
+// this can be further configured picking environment from .env file.
+const config = require('../../config')['dev'];
+
 const uuid = require('uniqid');
 
 module.exports = {
@@ -28,12 +31,12 @@ module.exports = {
         }
 
         // binding each result in db with a primary key.
-        await saveData("data.json", {[uuid()]: result});
+        await saveData(config.dbFileName, {[uuid()]: result});
         return result;
     },
 
     async getSavedData(){
-        let data = await getData("data.json");
+        let data = await getData(config.dbFileName);
         return JSON.parse(data);
     }
 };

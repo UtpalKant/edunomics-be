@@ -2,26 +2,29 @@ const express = require('express');
 const routes = express.Router();
 
 const { getBounceDetails, getSavedData } = require('./base.service');
+const { routeNames, httpStatusCodes } = require('../../helpers/constants');
 
-routes.post('/bounceDetails', async (req, res)=>{
-    try{
-        const {height, cr} = req.body;
+const baseControllerRoutes = routeNames.baseController;
+
+routes.post(baseControllerRoutes.bounceDetail, async (req, res) => {
+    try {
+        const { height, cr } = req.body;
         const response = await getBounceDetails(height, cr);
-        res.statusCode = 200;
+        res.statusCode = httpStatusCodes.OK;
         res.json(response);
-    } catch(err){
-        res.statusCode = 500;
+    } catch (err) {
+        res.statusCode = httpStatusCodes.InternalServerError;
         res.send(err);
     }
 });
 
-routes.get('/getSavedData', async(req, res)=>{
-    try{
+routes.get(baseControllerRoutes.getSavedData, async (req, res) => {
+    try {
         const response = await getSavedData();
-        res.statusCode = 200;
+        res.statusCode = httpStatusCodes.OK;
         res.json(response);
-    } catch(err){
-        res.statusCode = 500;
+    } catch (err) {
+        res.statusCode = httpStatusCodes.InternalServerError;
         res.send(err);
     }
 });

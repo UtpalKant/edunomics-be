@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // custom imports.
-const router = require('./index.router');
+const router = require('./routes/index.router');
 
 
 // calls routes/router middleware.
